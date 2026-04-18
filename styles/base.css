@@ -1,0 +1,72 @@
+:root {
+  --nav-height: 104px;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span {
+  font-family: "Open Sans", sans-serif;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: #121213;
+}
+.nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1140px;
+}
+.nav-left {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+.nav-menu {
+  display: flex;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    color: #fff;
+    &:hover {
+      background: #2b2b2c;
+    }
+  }
+}
+.cta-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background: #2b2b2c;
+  color: #fff;
+  padding: 0 16px;
+  border-radius: 8px;
+}
+
+.hero-section {
+  height: 200vh;
+  width: 100%;
+  background-size: contain;
+  background-image: url("https://storage.yandexcloud.net/yac-wh-sb-prod-s3-media-03005/uploads/article/1598/abce4a3bc3a9f343180cc20b81fbbeb4.webp");
+}
