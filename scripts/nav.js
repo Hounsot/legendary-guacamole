@@ -210,4 +210,37 @@ const navigationData = {
 };
 
 let navButtons = document.querySelectorAll("[data-nav]");
-console.log(navButtons);
+let titles = document.querySelector("[data-dropdown-part='titles']");
+let content = document.querySelector("[data-dropdown-part='content']");
+navButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    titles.innerHTML = "";
+    content.innerHTML = "";
+    document.querySelector("[data-dropdown]").classList.add("active");
+    navigationData[button.dataset.nav].forEach((section) => {
+      let title = document.createElement("a");
+      title.href = "#";
+      title.textContent = section.title;
+      titles.appendChild(title);
+      title.addEventListener("click", () => {
+        content.innerHTML = "";
+        section.sections.forEach((subsection) => {
+          let subsectionWrapper = document.createElement("div");
+          subsectionWrapper.classList.add("subsection");
+          subsectionWrapper.innerHTML = "";
+          let subsectionTitle = document.createElement("a");
+          subsectionTitle.href = "#";
+          subsectionTitle.textContent = subsection.title;
+          subsectionWrapper.appendChild(subsectionTitle);
+          subsection.links.forEach((link) => {
+            let linkElement = document.createElement("a");
+            linkElement.href = link.href;
+            linkElement.textContent = link.label;
+            subsectionWrapper.appendChild(linkElement);
+          });
+          content.appendChild(subsectionWrapper);
+        });
+      });
+    });
+  });
+});
