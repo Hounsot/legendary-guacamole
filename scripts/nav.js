@@ -212,17 +212,20 @@ const navigationData = {
 let navButtons = document.querySelectorAll("[data-nav]");
 let titles = document.querySelector("[data-dropdown-part='titles']");
 let content = document.querySelector("[data-dropdown-part='content']");
+let overlay = document.querySelector(".overlay");
+let dropdown = document.querySelector("[data-dropdown]");
 navButtons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("pointerenter", () => {
     titles.innerHTML = "";
     content.innerHTML = "";
-    document.querySelector("[data-dropdown]").classList.add("active");
+    dropdown.classList.add("active");
+    overlay.classList.add("active");
     navigationData[button.dataset.nav].forEach((section) => {
       let title = document.createElement("a");
       title.href = "#";
       title.textContent = section.title;
       titles.appendChild(title);
-      title.addEventListener("click", () => {
+      title.addEventListener("pointerenter", () => {
         content.innerHTML = "";
         section.sections.forEach((subsection) => {
           let subsectionWrapper = document.createElement("div");
@@ -242,5 +245,9 @@ navButtons.forEach((button) => {
         });
       });
     });
+  });
+  overlay.addEventListener("pointerenter", () => {
+    overlay.classList.remove("active");
+    dropdown.classList.remove("active");
   });
 });

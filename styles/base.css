@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 :root {
   interpolate-size: allow-keywords;
   --nav-height: 104px;
@@ -137,10 +140,46 @@ nav {
   background: #00000080;
   backdrop-filter: blur(50px);
   z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  &:is(.active) {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 .hero-section {
-  height: 200vh;
+  display: grid;
+  gap: 12px;
+  height: calc(100vh - var(--nav-height));
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  padding: 24px;
+  padding-top: var(--nav-height);
+  grid-template-areas:
+    "main main main main sidebar"
+    "main main main main sidebar"
+    "main main main main sidebar"
+    "main main main main sidebar"
+    "left left right right sidebar"
+    "left left right right sidebar";
   width: 100%;
-  background-size: contain;
-  background-image: url("https://storage.yandexcloud.net/yac-wh-sb-prod-s3-media-03005/uploads/article/1598/abce4a3bc3a9f343180cc20b81fbbeb4.webp");
+  background: #121213;
+  div {
+    background: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 36px;
+    &:nth-child(1) {
+      grid-area: main;
+    }
+    &:nth-child(2) {
+      grid-area: left;
+    }
+    &:nth-child(3) {
+      grid-area: right;
+    }
+    &:nth-child(4) {
+      grid-area: sidebar;
+    }
+  }
 }
